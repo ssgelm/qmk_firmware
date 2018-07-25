@@ -29,7 +29,6 @@ enum planck_layers {
 
 enum planck_keycodes {
   ONEPASS = SAFE_RANGE,
-  OPMOD,
 };
 
 #define LOWER MO(_LOWER)
@@ -117,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  {_______, CMD_1, CMD_2, CMD_3, CMD_4, _______, _______, _______, _______, _______, _______, _______},
  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, ONEPASS},
  {_______, _______, _______, _______, _______, _______, _______, _______, BACK, _______, _______, FWD},
- {_______,   OPMOD, _______, _______, _______, _______, _______, _______, PREV_TAB, SLACK_DOWN, SLACK_UP, NEXT_TAB}
+ {_______, _______, KC_LGUI, _______, _______, _______, _______, _______, PREV_TAB, SLACK_DOWN, SLACK_UP, NEXT_TAB}
 },
 
 /* Adjust (Lower + Raise)
@@ -149,17 +148,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ONEPASS:
       if (record->event.pressed) {
-        for(size_t i=0; i<KEYBOARD_REPORT_KEYS; i++) {
-          if (keyboard_report->keys[i]==OPMOD) {
-            SEND_STRING(SS_LGUI(SS_LALT(SS_TAP(X_BSLASH))));
-            return false;
-          }
+        if (keyboard_report->mods & MOD_BIT(KC_LGUI)) {
+          unregister_code(KC_LGUI);
+          SEND_STRING(SS_LGUI(SS_LALT(SS_TAP(X_BSLASH))));
+          return false;
         }
         SEND_STRING(SS_LGUI(SS_TAP(X_BSLASH)));
       }
-      return false;
-      break;
-    case OPMOD:
       return false;
       break;
   }
