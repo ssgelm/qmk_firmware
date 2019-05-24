@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |-----------------------------------------------------------|
    * |        |   |   |   |CLP|PgD|   |   |Del|End|PgD|          |
    * |-----------------------------------------------------------|
-   * |    |    |    |                        |    |    |    |    |
+   * |    |    |FLck|                        |    |    |    |    |
    * `-----------------------------------------------------------'
    */
 	[1] = LAYOUT_60_ansi(
@@ -54,10 +54,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
     switch(keycode) {
       case CLIP:
-        SEND_STRING(SS_LCTRL(SS_LALT("v")));
+        if (record->event.pressed) {
+          SEND_STRING(SS_LCTRL(SS_LALT("v")));
+        }
         return false;
       case FN_KEY:
         if (record->event.pressed) {
@@ -79,6 +80,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
     }
-  }
   return true;
 };
