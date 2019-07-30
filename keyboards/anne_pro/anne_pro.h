@@ -39,6 +39,7 @@ enum anne_pro_keycodes {
     APB_HD2,
     APB_HD3,
     APB_HD4,
+    CLIP,
 };
 
 /* The fully-featured LAYOUT() that has every single key available in the matrix. */
