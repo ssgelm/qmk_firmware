@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_DEL,
       _______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, KC_PSCR, KC_SLCK, KC_PAUS, RESET,
       _______,  KC__MUTE, KC__VOLDOWN, KC__VOLUP, KC_MPLY, KC_PGUP, KC_LEFT, KC_DOWN, KC_UP, KC_RGHT, KC_HOME, KC_PGUP, _______,
-      _______,   _______, _______, _______,    CLIP, KC_PGDN, _______, _______, KC_DEL, KC_END, KC_PGDN, _______,
+      _______,   _______, _______, _______,    CLIP, KC_PGDN, A(S(KC_DOWN)), A(S(KC_UP)), KC_DEL, KC_END, KC_PGDN, _______,
       _______, _______, FN_LOCK,               _______,                                _______, _______, _______, _______
     ),
   /* Keymap 2: Macro Layer
