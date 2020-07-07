@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "ssgelm.h"
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -6,13 +7,6 @@
 // entirely and just use numbers.
 #define _BL 0
 #define _FL 1
-
-#define _______ KC_TRNS
-
-enum custom_keycodes {
-  CLIP = SAFE_RANGE
-};
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap _BL: (Base Layer) Default Layer
@@ -54,15 +48,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,_______,        _______,KC_VOLU, \
   _______,BL_TOGG, BL_DEC, BL_INC,    CLIP,_______, _______,_______,_______,_______,_______,_______, KC_PGUP, KC_VOLD, \
   _______,_______,_______,                 _______,               _______,_______,_______,KC_HOME,KC_PGDN,  KC_END),
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    switch(keycode) {
-      case CLIP:
-        SEND_STRING(SS_LCTRL(SS_LALT("v")));
-        return false;
-    }
-  }
-  return true;
 };

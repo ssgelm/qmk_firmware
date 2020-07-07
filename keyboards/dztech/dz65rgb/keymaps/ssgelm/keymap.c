@@ -1,11 +1,8 @@
 #include QMK_KEYBOARD_H
+#include "ssgelm.h"
 
 #define _BL 0
 #define _FL 1
-
-enum custom_keycodes {
-  CLIP = SAFE_RANGE
-};
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -48,15 +45,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,_______,_______,        _______,KC_VOLU, \
   _______,RGB_TOG,RGB_MOD,_______,    CLIP,_______, A(S(KC_DOWN)), A(S(KC_UP)),_______,_______,_______,_______, KC_PGUP, KC_VOLD, \
   _______,_______,_______,                 _______,               _______,_______,_______,KC_HOME,KC_PGDN,  KC_END),
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    switch(keycode) {
-      case CLIP:
-        SEND_STRING(SS_LCTRL(SS_LALT("v")));
-        return false;
-    }
-  }
-  return true;
 };

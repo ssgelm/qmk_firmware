@@ -15,10 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include QMK_KEYBOARD_H
-
-enum custom_keycodes {
-  CLIP = SAFE_RANGE
-};
+#include "ssgelm.h"
 
 const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Layer 0: Default Layer
@@ -81,15 +78,4 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______, BL_DEC,\
         _______,_______,_______,                        _______,                _______,_______,_______,        _______,_______,_______ \
     ),
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    switch(keycode) {
-      case CLIP:
-        SEND_STRING(SS_LCTRL(SS_LALT("v")));
-        return false;
-    }
-  }
-  return true;
 };

@@ -1,14 +1,5 @@
 #include QMK_KEYBOARD_H
-
-#define _______ KC_TRNS
-
-bool fnIsLocked = false;
-
-enum custom_keycodes {
-  CLIP = SAFE_RANGE,
-  FN_KEY,
-  FN_LOCK,
-};
+#include "ssgelm.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap 0: (Base Layer) Default Layer
@@ -71,36 +62,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______,    _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______,
       _______,  _______, _______,                    _______,                                _______, _______, _______, _______
     )
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch(keycode) {
-      case CLIP:
-        if (record->event.pressed) {
-          SEND_STRING(SS_LCTRL(SS_LALT("v")));
-        }
-        return false;
-      case FN_KEY:
-        if (record->event.pressed) {
-          layer_on(1);
-          fnIsLocked = false;
-        } else {
-          if (!fnIsLocked) {
-            layer_off(1);
-          }
-        }
-        return false;
-      case FN_LOCK:
-        if (record->event.pressed) {
-          fnIsLocked = !fnIsLocked;
-
-          if (!fnIsLocked) {
-            layer_off(1);
-          }
-        }
-        return false;
-    }
-  return true;
 };
 
 /* Layer Template:

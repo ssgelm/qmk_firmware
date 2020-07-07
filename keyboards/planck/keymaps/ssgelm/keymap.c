@@ -16,6 +16,7 @@
 
 #include "planck.h"
 #include "action_layer.h"
+#include "ssgelm.h"
 
 extern keymap_config_t keymap_config;
 
@@ -28,7 +29,7 @@ enum planck_layers {
 };
 
 enum planck_keycodes {
-  ONEPASS = SAFE_RANGE,
+  ONEPASS = NEW_SAFE_RANGE,
 };
 
 #define LOWER MO(_LOWER)
@@ -144,7 +145,7 @@ uint32_t layer_state_set_user(uint32_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ONEPASS:
       if (record->event.pressed) {
